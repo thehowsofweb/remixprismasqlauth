@@ -5,16 +5,18 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "dev": "remix vite:dev",
+    "dev": "remix vite:dev --host 0.0.0.0 --port 5173",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
+    "start": "remix-serve ./build/server/index.js --port 4174",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@prisma/client": "^5.20.0",
     "@remix-run/node": "^2.12.1",
     "@remix-run/react": "^2.12.1",
     "@remix-run/serve": "^2.12.1",
     "isbot": "^4.1.0",
+    "prisma": "^5.20.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
