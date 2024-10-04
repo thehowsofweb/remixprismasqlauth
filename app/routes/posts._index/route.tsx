@@ -1,14 +1,18 @@
 import { Link, useLoaderData } from "@remix-run/react";
 import { db } from "~/utils/db.server";
+import { getUser } from "~/utils/session.server";
 
-export async function loader() {
+export async function loader({ request }) {
+  const user = await getUser(request);
   const data = {
     posts: await db.post.findMany({
+      where: { userId: user?.id },
       take: 10,
       select: { id: true, title: true, createdAt: true },
       orderBy: { createdAt: "desc" },
     }),
   };
+
   return data;
 }
 
